@@ -1,10 +1,10 @@
 'use strict'
 
 const Sequelize = require('sequelize')
-const setupDataBase = require('../lib/db')
+const setupDatabase = require('../lib/db')
 
 module.exports = function setupAgentModel (config) {
-  const sequelize = setupDataBase(config)
+  const sequelize = setupDatabase(config)
 
   return sequelize.define('agent', {
     uuid: {
@@ -19,7 +19,7 @@ module.exports = function setupAgentModel (config) {
       type: Sequelize.STRING,
       allowNull: false
     },
-    hostName: {
+    hostname: {
       type: Sequelize.STRING,
       allowNull: false
     },
@@ -30,7 +30,7 @@ module.exports = function setupAgentModel (config) {
     connected: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
-      defaulValue: false
+      defaultValue: false
     }
   })
 }
