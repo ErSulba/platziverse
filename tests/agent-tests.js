@@ -3,6 +3,7 @@
 const test = require('ava')
 const sinon = require('sinon')
 const proxyquire = require('proxyquire')
+const agentFixtures = require('./fixtures/agent')
 
 /* here we are adding a ligging function to the config in memory */
 let config = {
@@ -16,6 +17,8 @@ let MetricStub = {
   belongsTo: sinon.spy()
 }
 
+let single = Object.assign({}, agentFixtures.single)
+let id= 1
 let AgentStub = null
 let db = null // here we are declaring the db global var so we can use it in the test
 let sandbox = null
@@ -50,4 +53,10 @@ test.serial('Setup', t => {
   t.true(AgentStub.hasMany.calledWith(MetricStub), 'Argument should be the MetricModel')
   t.true(MetricStub.belongsTo.called, 'MetricModel.belongsTo was executed')
   t.true(MetricStub.belongsTo.calledWith(AgentStub), 'Argument should be the AgentModel')
+})
+
+test.serial('AgentFindById', async t => {
+  let agent = await db.Agent.findById(id)
+
+  t.deepEqual(agent, agentFixtures.byId(id), 'Should be the same')
 })
