@@ -1,5 +1,8 @@
 'use strict'
 
+/**
+ * Agents Fixture: these are the fake data we use to make some test without using a real DB conection
+ */
 const agent = {
   id: 1,
   uuid: 'yyy-yyy-yyy',
@@ -14,9 +17,20 @@ const agent = {
 
 const agents = [
   agent,
-  extend(agent, { id: 2, uuid: 'yyy-yyy-yyx', connected: false, username: 'test'}),
-  extend(agent, { id: 4, uuid: 'yyy-yyy-yyz'}),
-  extend(agent, { id: 4, uuid: 'yyy-yyy-yyz', username: 'platzi'})
+  extend(agent, {
+    id: 2,
+    uuid: 'yyy-yyy-yyx',
+    connected: false,
+    username: 'test'}),
+  extend(agent, {
+    id: 4,
+    uuid: 'yyy-yyy-yyz'
+  }),
+  extend(agent, {
+    id: 4,
+    uuid: 'yyy-yyy-yyz',
+    username: 'platzi'
+  })
 
 ]
 

@@ -18,7 +18,7 @@ let MetricStub = {
 }
 
 let single = Object.assign({}, agentFixtures.single)
-let id= 1
+let id = 1
 let AgentStub = null
 let db = null // here we are declaring the db global var so we can use it in the test
 let sandbox = null
@@ -33,6 +33,10 @@ test.beforeEach(async () => {
   AgentStub = {
     hasMany: sandbox.spy()
   }
+
+  // Model findByid Stub
+  AgentStub.findById = sandbox.stub()
+  AgentStub.findById.withArgs(id).returns(Promise.resolve(agentFixtures.byId(id)))
 
   const setupDatabase = proxyquire('../', {
     './models/agent': () => AgentStub,
@@ -58,5 +62,8 @@ test.serial('Setup', t => {
 test.serial('AgentFindById', async t => {
   let agent = await db.Agent.findById(id)
 
+  t.true(AgentStub.findById.called, 'findById')
+  t.true(AgentStub.findById.calledOnce, 'findById Should be called once')
+  t.true(AgentStub.findById.calledWith(id), 'findById should be called with a an ID')
   t.deepEqual(agent, agentFixtures.byId(id), 'Should be the same')
 })
