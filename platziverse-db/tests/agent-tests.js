@@ -37,7 +37,7 @@ test.beforeEach(async () => {
   // Model findByid Stub
   AgentStub.findById = sandbox.stub()
   AgentStub.findById.withArgs(id).returns(Promise.resolve(agentFixtures.byId(id)))
-
+  // Here were a overwriting the model with our stubs to make some tests
   const setupDatabase = proxyquire('../', {
     './models/agent': () => AgentStub,
     './models/metric': () => MetricStub
