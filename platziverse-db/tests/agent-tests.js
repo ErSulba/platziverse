@@ -36,8 +36,9 @@ test.beforeEach(async () => {
 
   // Model findByid Stub
   AgentStub.findById = sandbox.stub()
+  //  This line means: when i call AgentStub.findByid with the argument "id" it will return a promise with the fixture of Agent with the given id
   AgentStub.findById.withArgs(id).returns(Promise.resolve(agentFixtures.byId(id)))
-  // Here were a overwriting the model with our stubs to make some tests
+  // Here we are overwriting the models with our stubs to make some tests without calling the real functions
   const setupDatabase = proxyquire('../', {
     './models/agent': () => AgentStub,
     './models/metric': () => MetricStub
