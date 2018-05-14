@@ -12,6 +12,7 @@ module.exports = async function (config) {
     */
   config = defaults(config, {
     dialect: 'sqlite',
+    operatorsAliases: false,
     pool: {
       max: 10,
       min: 0,

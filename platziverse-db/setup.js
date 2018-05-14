@@ -25,6 +25,7 @@ async function setup () {
     password: process.env.DB_PASS || 'platzi',
     host: process.env.DB_HOST || 'localhost',
     dialect: 'postgres',
+    operatorsAliases: false,
     logging: s => debug(s),
     setup: true
   }
