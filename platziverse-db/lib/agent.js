@@ -9,6 +9,10 @@ module.exports = function setupAgent (AgentModel) {
     return AgentModel.findById(id)
   }
 
+  /**
+   * function that wraps a method for the agent model
+   * @param {object} agent
+   */
   async function createOrUpdate (agent) {
     const cond = {
       where: {
@@ -26,9 +30,50 @@ module.exports = function setupAgent (AgentModel) {
     const result = await AgentModel.create(agent)
     return result.toJSON()
   }
+  /**
+   * Function that returns a user for a given uuid
+   * @param {string} uuid
+   */
+  function findByUuid (uuid) {
+    return AgentModel.findOne({
+      where: {
+        uuid
+      }
+    })
+  }
 
+  /**
+   * Function that returns a list of the users
+   */
+  function findAll () {
+    return AgentModel.findAll()
+  }
+
+  /**
+   * function that returns all the users connected at the moment
+   */
+  function findConnected () {
+    return AgentModel.findAll({
+      where: {
+        connected: true
+      }
+    })
+  }
+
+  function findByUsername (username) {
+    return AgentModel.findAll({
+      where: {
+        username,
+        connected: true
+      }
+    })
+  }
   return {
     findById,
-    createOrUpdate
+    createOrUpdate,
+    findByUuid,
+    findAll,
+    findConnected,
+    findByUsername
   }
 }
