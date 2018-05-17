@@ -18,7 +18,7 @@ async function setup () {
       }
     ])
     if (!answer.setup) {
-      return console.log('Nothing happened :)')
+      return console.log(`${chalk.blue('Nothing Happened :)')} `)
     }
   }
 
@@ -35,7 +35,7 @@ async function setup () {
 
   await db(config).catch(handleFatalError)
 
-  console.log('Success!')
+  console.log(`${chalk.green('Succes!!')}`)
   process.exit(0)
 }
 
