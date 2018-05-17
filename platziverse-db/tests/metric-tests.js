@@ -139,4 +139,3 @@ test.serial('Metric#create', async t => {
 
   t.deepEqual(metric, newMetric, 'agent should be the same')
 })
-
