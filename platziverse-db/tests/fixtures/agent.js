@@ -1,5 +1,8 @@
 'use strict'
 
+const util = require('../../utils')
+
+const extend = util.extend
 /**
  * Agents Fixture: these are the fake data we use to make some test without using a real DB conection
  */
@@ -33,16 +36,6 @@ const agents = [
   })
 
 ]
-
-/**
- * Function to create copys of an object and rewrite some of its values
- * @param {object} obj
- * @param {*} values
- */
-function extend (obj, values) {
-  const clone = Object.assign({}, obj)
-  return Object.assign(clone, values)
-}
 
 module.exports = {
   single: agent,
