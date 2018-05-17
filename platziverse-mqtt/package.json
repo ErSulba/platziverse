@@ -1,0 +1,33 @@
+{
+  "name": "platziverse-mqtt",
+  "version": "1.0.0",
+  "private": true,
+  "description": "a single IoT Platform - MQTT Server",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production node server.js",
+    "start-dev": "SET DEBUG=platziverse:* && nodemon server.js",
+    "lint": "standard --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ErSulba/platziverse.git"
+  },
+  "author": "Alejandro Sulbaran <sulbaran.kun@gmail.com> (https://twitter.com/ersulba)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ErSulba/platziverse/issues"
+  },
+  "homepage": "https://github.com/ErSulba/platziverse#readme",
+  "devDependencies": {
+    "nodemon": "^1.17.4",
+    "standard": "^11.0.1"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "debug": "^3.1.0",
+    "mosca": "^2.8.1",
+    "redis": "^2.8.0"
+  }
+}
