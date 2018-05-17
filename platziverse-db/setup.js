@@ -4,24 +4,21 @@ const debug = require('debug')('platziverse:db:setup')
 const inquirer = require('inquirer')
 const chalk = require('chalk')
 const db = require('./')
-const argv = require('yargs').argv
 
 const prompt = inquirer.createPromptModule()
 
 async function setup () {
-  if (!argv.y) {
-    const answer = await prompt([
-      {
-        type: 'confirm',
-        name: 'setup',
-        message: 'This will destroy your databsae, are you sure?'
-      }
-    ])
-    if (!answer.setup) {
-      return console.log('Nothing happened :)')
+  const answer = await prompt([
+    {
+      type: 'confirm',
+      name: 'setup',
+      message: 'This will destroy your databsae, are you sure?'
     }
-  }
+  ])
 
+  if (!answer.setup) {
+    return console.log('Nothing happened :)')
+  }
   const config = {
     database: process.env.DB_NAME || 'platziverse',
     username: process.env.DB_USER || 'platzi',
