@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A simple IoT Platform- DB Module",
   "main": "index.js",
-  "scripts": {
+  "scripts": {  
     "setup": "set DEBUG=platziverse:* && node setup.js",
     "test": "set DEBUG=platziverse:* && nyc --reporter=lcov ava tests/ --verbose",
     "lint": "standard --fix"
