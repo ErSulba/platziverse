@@ -1,10 +1,10 @@
 'use strict'
 
-const debug = require('debug')('platziverse:db:setup')
 const inquirer = require('inquirer')
 const chalk = require('chalk')
 const db = require('./')
 const argv = require('yargs').argv
+const config = require('./db-config')()
 
 const prompt = inquirer.createPromptModule()
 
@@ -20,17 +20,6 @@ async function setup () {
     if (!answer.setup) {
       return console.log(`${chalk.blue('Nothing Happened :)')} `)
     }
-  }
-
-  const config = {
-    database: process.env.DB_NAME || 'platziverse',
-    username: process.env.DB_USER || 'platzi',
-    password: process.env.DB_PASS || 'platzi',
-    host: process.env.DB_HOST || 'localhost',
-    dialect: 'postgres',
-    operatorsAliases: false,
-    logging: s => debug(s),
-    setup: true
   }
 
   await db(config).catch(handleFatalError)
