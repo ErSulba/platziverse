@@ -4,6 +4,8 @@ const debug = require('debug')('platziverse:mqtt')
 const mosca = require('mosca')
 const redis = require('redis')
 const chalk = require('chalk')
+const db = require('platziverse-db')
+const config = require('../platziverse-db/db-config')(false)
 
 const backend = {
   type: 'redis',
@@ -18,6 +20,8 @@ const settings = {
 
 const server = new mosca.Server(settings)
 
+let Agent, Metric
+
 server.on('clientConnected', client => {
   debug(`Cient connected: ${client.id} `)
 })
@@ -30,7 +34,11 @@ server.on('published', (packet, client) => {
   debug(`Received: ${packet.topic} `)
   debug(`Payload: ${packet.payload} `)
 })
-server.on('ready', () => {
+
+server.on('ready', async () => {
+  const services = await db(config).catch(handleFatalError)
+  Agent = services.Agent
+  Metric = services.Metric
   console.log(`${chalk.green('[platziverse-mqtt]')} server is running `)
 })
 
