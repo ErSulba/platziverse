@@ -1,0 +1,16 @@
+{
+  "name": "platziverse-agent",
+  "version": "1.0.0",
+  "private": false,
+  "description": "simple IoT Platform - Agent",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "MIT"
+  },
+  "author": "Alejandro Sulbaran <sulbaran.kun@gmail.com> (https://twitter.com/ersulba)",
+  "license": "MIT"
+}
